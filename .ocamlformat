@@ -1,0 +1,13 @@
+version = 0.19.0
+profile = conventional
+
+break-fun-decl = fit-or-vertical
+break-fun-sig = fit-or-vertical
+break-infix = fit-or-vertical
+break-infix-before-func = true
+break-string-literals = never
+function-indent-nested = always
+if-then-else = keyword-first
+indicate-multiline-delimiters = closing-on-separate-line
+single-case = sparse
+type-decl = sparse
