@@ -1,8 +1,0 @@
-(library
- (name day_BP)
- (libraries aoc_2021)
- (inline_tests)
- (preprocess
-  (pps ppx_inline_test))
- (flags
-  (:standard -open Aoc_2021)))

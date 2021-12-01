@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@opam/dune": "2.9.1",
-    "@opam/rresult": "0.7.0",
     "ocaml": "4.12.0"
   },
   "devDependencies": {

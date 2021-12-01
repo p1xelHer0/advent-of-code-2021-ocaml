@@ -1,3 +1,0 @@
-(executable
- (name puzzle)
- (libraries day_BP))

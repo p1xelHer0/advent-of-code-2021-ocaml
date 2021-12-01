@@ -1,5 +1,5 @@
 {
-  "checksum": "d7f44d7a740ea21deb11b0c938b47e1a",
+  "checksum": "dfef0f34f3416e71ac8b34037cfc4c76",
   "root": "aoc_2021@link-dev:./esy.json",
   "node": {
     "ocaml@4.12.0@d41d8cd9": {
@@ -23,8 +23,7 @@
       "source": { "type": "link-dev", "path": ".", "manifest": "esy.json" },
       "overrides": [],
       "dependencies": [
-        "ocaml@4.12.0@d41d8cd9", "@opam/rresult@opam:0.7.0@0042fa02",
-        "@opam/dune@opam:2.9.1@1e504822"
+        "ocaml@4.12.0@d41d8cd9", "@opam/dune@opam:2.9.1@1e504822"
       ],
       "devDependencies": [
         "@opam/utop@opam:2.8.0@1d94c18c",
@@ -446,31 +445,6 @@
       "overrides": [],
       "dependencies": [
         "ocaml@4.12.0@d41d8cd9", "@esy-ocaml/substs@0.0.1@d41d8cd9"
-      ],
-      "devDependencies": [ "ocaml@4.12.0@d41d8cd9" ]
-    },
-    "@opam/rresult@opam:0.7.0@0042fa02": {
-      "id": "@opam/rresult@opam:0.7.0@0042fa02",
-      "name": "@opam/rresult",
-      "version": "opam:0.7.0",
-      "source": {
-        "type": "install",
-        "source": [
-          "archive:https://opam.ocaml.org/cache/sha512/f1/f1bb631c986996388e9686d49d5ae4d8aaf14034f6865c62a88fb58c48ce19ad2eb785327d69ca27c032f835984e0bd2efd969b415438628a31f3e84ec4551d3#sha512:f1bb631c986996388e9686d49d5ae4d8aaf14034f6865c62a88fb58c48ce19ad2eb785327d69ca27c032f835984e0bd2efd969b415438628a31f3e84ec4551d3",
-          "archive:https://erratique.ch/software/rresult/releases/rresult-0.7.0.tbz#sha512:f1bb631c986996388e9686d49d5ae4d8aaf14034f6865c62a88fb58c48ce19ad2eb785327d69ca27c032f835984e0bd2efd969b415438628a31f3e84ec4551d3"
-        ],
-        "opam": {
-          "name": "rresult",
-          "version": "0.7.0",
-          "path": "esy.lock/opam/rresult.0.7.0"
-        }
-      },
-      "overrides": [],
-      "dependencies": [
-        "ocaml@4.12.0@d41d8cd9", "@opam/topkg@opam:1.0.4@52d43104",
-        "@opam/ocamlfind@opam:1.9.1@b748edf6",
-        "@opam/ocamlbuild@opam:0.14.0@0dee4078",
-        "@esy-ocaml/substs@0.0.1@d41d8cd9"
       ],
       "devDependencies": [ "ocaml@4.12.0@d41d8cd9" ]
     },
