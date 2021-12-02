@@ -9,3 +9,14 @@ let read_file filename =
         List.rev lines
   in
   loop []
+
+let parse fmt map line = try Some (Scanf.sscanf line fmt map) with _ -> None
+
+let rec try_parse parsers line =
+  match parsers with
+  | [] -> failwith ("could not parse: " ^ line)
+  | parse :: parsers -> (
+      match parse line with
+      | None -> try_parse parsers line
+      | Some result -> result
+    )

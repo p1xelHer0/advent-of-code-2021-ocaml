@@ -4,15 +4,19 @@
 
 ### Setup
 
-- Install [Node.js](https://nodejs.org/), I use [fnm](https://github.com/Schniz/fnmvv/)
-
 - Install [esy](https://esy.sh/) locally using `npm`
+
+- Install [Node.js](https://nodejs.org/) which includes `npm`, I use [fnm](https://github.com/Schniz/fnmvv/)
 
 ```bash
 npm i
 ```
 
-- Build dependencies using `esy`
+> You can install `esy` globally using other means. If you do, remove the `npx` part of the commands below.
+
+### Install dependencies using `esy`
+
+This will install dependencies including the OCaml toolchain.
 
 ```bash
 npx esy
@@ -24,7 +28,7 @@ npx esy
 npx esy test
 ```
 
-- or in watch mode
+> or in watch mode
 
 ```bash
 npx esy test:watch
@@ -34,7 +38,7 @@ npx esy test:watch
 
 Puzzles are numbered `day_{1..25}`
 
-- For example, to run the puzzle of day 1
+> For example, to run the puzzle of day 1
 
 ```bash
 npx esy dune exec bin/day_1/puzzle.exe
