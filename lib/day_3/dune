@@ -1,0 +1,8 @@
+(library
+ (name day_3)
+ (libraries aoc_2021)
+ (inline_tests)
+ (preprocess
+  (pps ppx_assert ppx_inline_test ppx_sexp_conv))
+ (flags
+  (:standard -open Aoc_2021)))

@@ -8,11 +8,12 @@ and command = {
   value : int;
 }
 
-let direction_of_string = function
+let direction_of_string s =
+  match s with
   | "forward" -> Forward
   | "down" -> Down
   | "up" -> Up
-  | _ -> failwith "invalid input data"
+  | _ -> failwith (s ^ ": invalid input data")
 
 let parsers =
   [
@@ -39,12 +40,12 @@ module A = struct
       )
 
   let solve l =
-    List.fold_left next_position { depth = 0; horizontal = 0 } l
+    List.fold_left ~f:next_position ~init:{ depth = 0; horizontal = 0 } l
     |> fun p -> p.depth * p.horizontal
 
   let%test _ =
     solve
-      (List.map parse_direction
+      (List.map ~f:parse_direction
          [ "forward 5"; "down 5"; "forward 8"; "up 3"; "down 8"; "forward 2" ]
       )
     = 150
@@ -72,12 +73,14 @@ module B = struct
       )
 
   let solve l =
-    List.fold_left next_position { depth = 0; horizontal = 0; aim = 0 } l
+    List.fold_left ~f:next_position
+      ~init:{ depth = 0; horizontal = 0; aim = 0 }
+      l
     |> fun p -> p.depth * p.horizontal
 
   let%test _ =
     solve
-      (List.map parse_direction
+      (List.map ~f:parse_direction
          [ "forward 5"; "down 5"; "forward 8"; "up 3"; "down 8"; "forward 2" ]
       )
     = 900
@@ -86,9 +89,9 @@ end
 let run () =
   let input = "./lib/day_2/input" in
 
-  let parsed_input = input |> Util.read_file |> List.map parse_direction in
+  let parsed_input = input |> Util.read_file |> List.map ~f:parse_direction in
 
-  let _puzzle_a = parsed_input |> A.solve |> Printf.printf "Day 1A: %d\n%!" in
+  let _puzzle_a = parsed_input |> A.solve |> Printf.printf "Day 2A: %d\n%!" in
 
-  let _puzzle_b = parsed_input |> B.solve |> Printf.printf "Day 1B: %d\n%!" in
+  let _puzzle_b = parsed_input |> B.solve |> Printf.printf "Day 2B: %d\n%!" in
   ()

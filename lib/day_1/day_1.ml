@@ -12,7 +12,7 @@ module A = struct
 end
 
 module B = struct
-  let sum = List.fold_left ( + ) 0
+  let sum = List.fold_left ~f:( + ) ~init:0
 
   let rec solve_aux accu l =
     match l with
@@ -33,7 +33,7 @@ end
 let run () =
   let input = "./lib/day_1/input" in
 
-  let parsed_input = input |> Util.read_file |> List.map int_of_string in
+  let parsed_input = input |> Util.read_file |> List.map ~f:int_of_string in
 
   let _puzzle_a = parsed_input |> A.solve |> Printf.printf "Day 1A: %d\n%!" in
 
