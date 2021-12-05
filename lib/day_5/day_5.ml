@@ -39,11 +39,19 @@ module Line = struct
       Util.range t.start.x t.finish.x |> List.map ~f:(fun x -> fixed_coord ~x)
     in
 
+    let range_diagonal t =
+      let open Coordinate in
+      let x_range = Util.range t.start.x t.finish.x in
+      let y_range = Util.range t.start.y t.finish.y in
+      List.combine x_range y_range
+      |> List.map ~f:(fun (x, y) -> Coordinate.make ~x ~y)
+    in
+
     match direction t with
     | `Horizontal -> range_y t
     | `Vertical -> range_x t
     | `Diagonal -> (
-        match part with `Part_1 -> [] | `Part_2 -> []
+        match part with `Part_1 -> [] | `Part_2 -> range_diagonal t
       )
 end
 
