@@ -1,5 +1,5 @@
 (library
- (name day_4)
+ (name day_7)
  (libraries aoc_2021 containers)
  (inline_tests)
  (preprocess

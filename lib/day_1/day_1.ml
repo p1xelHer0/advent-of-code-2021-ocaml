@@ -12,7 +12,7 @@ module A = struct
 end
 
 module B = struct
-  let sum = List.fold_left ~f:( + ) ~init:0
+  let sum = Aoc_2021.Util.sum
 
   let rec solve_aux accu l =
     match l with

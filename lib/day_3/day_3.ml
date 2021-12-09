@@ -25,14 +25,14 @@ module A = struct
   open Aoc_2021
 
   let most_common_bit bits =
-    let sum_of_bits = List.fold_left ~f:( + ) ~init:0 bits in
+    let sum_of_bits = Aoc_2021.Util.sum bits in
     if sum_of_bits * 2 > List.length bits then 1 else 0
 
   let solve l =
     let bits = List.map ~f:bits_of_string l in
 
     let gamma =
-      Util.range 0 (Array.length (List.hd bits) - 1)
+      Util.range 0 (List.hd bits |> Array.length |> pred)
       |> List.map ~f:(col_of_input bits)
       |> List.map ~f:most_common_bit
     in
@@ -60,7 +60,7 @@ end
 
 module B = struct
   let most_common_bit bits =
-    let sum_of_bits = List.fold_left ~f:( + ) ~init:0 bits in
+    let sum_of_bits = Aoc_2021.Util.sum bits in
     let length = List.length bits in
     if sum_of_bits * 2 >= length then 1 else 0
 
@@ -76,7 +76,7 @@ module B = struct
           let bit_to_keep = col_of_input input i |> most_common_bit |> f in
           solve_aux ~least_common
             (List.filter ~f:(fun a -> a.(i) = bit_to_keep) input)
-            (i + 1)
+            (succ i)
     in
     let oxygen = solve_aux bits 0 in
     let co2 = solve_aux ~least_common:true bits 0 in

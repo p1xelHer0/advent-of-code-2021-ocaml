@@ -12,9 +12,9 @@ module A = struct
       let grow_aux school fish =
         match fish with
         | 0 -> List.append [ 6; 8 ] school
-        | x -> List.append [ x - 1 ] school
+        | x -> List.append [ pred x ] school
       in
-      grow (n - 1) (List.fold_left ~f:grow_aux ~init:[] school)
+      grow (pred n) (List.fold_left ~f:grow_aux ~init:[] school)
 
   let solve l = grow 80 l |> List.length
 
@@ -32,8 +32,8 @@ module B = struct
     | _ -> []
 
   let solve' n l =
-    let rec solve_aux n l = if n = 0 then l else solve_aux (n - 1) (grow l) in
-    l |> fish_to_index |> solve_aux n |> List.fold_left ~f:( + ) ~init:0
+    let rec solve_aux n l = if n = 0 then l else solve_aux (pred n) (grow l) in
+    l |> fish_to_index |> solve_aux n |> Aoc_2021.Util.sum
 
   let solve l = solve' 256 l
 

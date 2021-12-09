@@ -67,9 +67,10 @@ let parse_lines = Aoc_2021.Util.try_parse parsers
 module Coordinates = Map.Make (Coordinate)
 
 let bump_coord s coordinate =
-  match Coordinates.find_opt coordinate s with
-  | None -> Coordinates.add coordinate 1 s
-  | Some x -> Coordinates.add coordinate (x + 1) s
+  let value =
+    match Coordinates.find_opt coordinate s with None -> 1 | Some x -> succ x
+  in
+  Coordinates.add coordinate value s
 
 let solve_aux l ~part =
   List.map ~f:parse_lines l
