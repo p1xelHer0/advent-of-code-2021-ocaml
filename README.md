@@ -1,6 +1,6 @@
 # ✨ Advent of Code 2021 ✨
 
-> 1AB 2AB 3AB 5AB solved
+> 1AB 2AB 3AB 5AB 6AB 7AB 8A solved
 
 ## My solutions to [Advent of Code 2021](https://adventofcode.com/2021/) written in [OCaml](https://ocaml.org/)
 
