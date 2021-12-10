@@ -1,3 +1,5 @@
+open ContainersLabels
+
 let bit_of_char c =
   match c with
   | '0' -> 0
@@ -19,7 +21,7 @@ let dec_of_bits bits =
        ~init:(1, 0) bits
 
 let bits_of_string s =
-  Util.char_list_of_string s |> List.map ~f:bit_of_char |> Array.of_list
+  String.to_list s |> List.map ~f:bit_of_char |> Array.of_list
 
 module A = struct
   open Aoc_2021

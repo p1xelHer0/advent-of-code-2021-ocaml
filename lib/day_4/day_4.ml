@@ -26,7 +26,7 @@ module A = struct
         "22 11 13  6  5";
         " 2  0 12  3  7";
       ]
-    = 1
+    = 0
 end
 
 module B = struct

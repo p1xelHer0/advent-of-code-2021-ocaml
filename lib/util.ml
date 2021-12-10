@@ -13,21 +13,13 @@ let read_file filename =
 let parse fmt map line = try Some (Scanf.sscanf line fmt map) with _ -> None
 
 let rec try_parse parsers line =
-  match parsers with | [] -> failwith ("could not parse: " ^ line)
+  match parsers with
+  | [] -> failwith ("could not parse: " ^ line)
   | parse :: parsers -> (
       match parse line with
       | None -> try_parse parsers line
       | Some result -> result
     )
-
-let char_list_of_string s =
-  let rec exp i l = if i < 0 then l else exp (pred i) (s.[i] :: l) in
-  exp (pred (String.length s)) []
-
-let string_of_chars chars =
-  let buf = Buffer.create 16 in
-  List.iter ~f:(Buffer.add_char buf) chars;
-  Buffer.contents buf
 
 let remove_duplicates l =
   let cons_uniq tl hd = if List.mem hd ~set:tl then tl else hd :: tl in

@@ -51,6 +51,39 @@ module A = struct
 end
 
 module B = struct
+  module Segment : sig
+    module Set : Set.S with type elt = Char.t
+
+    type t = string
+
+    val union : t -> t -> t
+
+    val difference : t -> t -> t
+
+    val intersection : t -> t -> t
+
+    val partition : (t -> bool) -> t list -> t list * t list
+  end = struct
+    module Set = Set.Make (Char)
+
+    let set_of_string s = s |> String.to_seq |> Set.of_seq
+
+    type t = string
+
+    let f g s1 s2 =
+      let s1' = set_of_string s1 in
+      let s2' = set_of_string s2 in
+      g s1' s2' |> Set.to_seq |> String.of_seq
+
+    let union s1 s2 = f Set.union s1 s2
+
+    let difference s1 s2 = f Set.diff s1 s2
+
+    let intersection s1 s2 = f Set.inter s1 s2
+
+    let partition p l = List.partition ~f:p l
+  end
+
   let digit_of_segment = function
     | "abcefg" -> 0
     | "cf" -> 1
@@ -73,33 +106,21 @@ module B = struct
 
   let solve_aux sdd = sdd.output |> List.map ~f:sort_segment
 
-  let segment_union a b =
-    a ^ b
-    |> String.to_seq
-    |> List.of_seq
-    |> Util.remove_duplicates
-    |> List.sort ~cmp:Char.compare
-    |> List.to_seq
-    |> String.of_seq
-
-  let segment_difference a b =
-    let b' = b |> String.to_seq |> List.of_seq in
-    let not_in_b x = not (List.mem x b') in
-    a
-    |> String.to_seq
-    |> List.of_seq
-    |> List.filter ~f:not_in_b
-    |> List.to_seq
-    |> String.of_seq
-
   let map_wiring l =
-    let _one = l |> List.filter ~f:(fun s -> String.length s = 2) |> List.hd in
-    let _four = l |> List.filter ~f:(fun s -> String.length s = 4) |> List.hd in
-    let _seven =
-      l |> List.filter ~f:(fun s -> String.length s = 3) |> List.hd
+    let segments_with_length length l =
+      let keep_length c = String.length c = length in
+      l |> List.filter ~f:keep_length
     in
 
-    let a = segment_difference _seven _one in
+    let one = segments_with_length 2 l |> List.hd in
+    let _four = segments_with_length 4 l |> List.hd in
+    let seven = segments_with_length 3 l |> List.hd in
+
+    let _twoThreeFive = segments_with_length 5 l in
+    let _zeroSixNine = segments_with_length 5 l in
+
+    let a = Segment.difference seven one in
+
     a
 
   let solve l =
