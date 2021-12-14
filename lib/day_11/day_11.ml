@@ -120,7 +120,13 @@ module A = struct
 end
 
 module B = struct
-  let solve l = List.hd l
+  let solve l =
+    let matrix = l |> parse in
+    OSeq.iterate 1 succ
+    |> OSeq.map (fun n -> (n, step matrix))
+    |> OSeq.find (fun (_n, flashes) -> flashes = 100)
+    |> Option.get_exn_or "no simultaneous flash"
+    |> fst
 end
 
 let run () =
@@ -130,5 +136,5 @@ let run () =
 
   let _puzzle_a = parsed_input |> A.solve |> Printf.printf "Day 11A: %i\n%!" in
 
-  (* let _puzzle_b = parsed_input |> B.solve |> Printf.printf "Day 11B: %s\n%!" in *)
+  let _puzzle_b = parsed_input |> B.solve |> Printf.printf "Day 11B: %i\n%!" in
   ()

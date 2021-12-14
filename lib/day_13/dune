@@ -1,5 +1,5 @@
 (library
- (name day_11)
+ (name day_13)
  (libraries aoc_2021 containers rresult oseq)
  (inline_tests)
  (preprocess

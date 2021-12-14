@@ -47,3 +47,5 @@ let rec permutations l =
   match l with
   | [] -> [ l ]
   | hd :: tl -> List.flatten (List.map ~f:(insert hd) (permutations tl))
+
+let array_flatten a = Array.(concat (to_list a))
