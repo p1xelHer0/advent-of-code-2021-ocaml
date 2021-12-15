@@ -1,5 +1,5 @@
 {
-  "checksum": "22ea94fe30391138176b4863ac44a231",
+  "checksum": "2dd490b2ff836712a1008b497d9bc3f6",
   "root": "aoc_2021@link-dev:./esy.json",
   "node": {
     "ocaml@4.12.0@d41d8cd9": {
@@ -24,14 +24,15 @@
       "overrides": [],
       "dependencies": [
         "ocaml@4.12.0@d41d8cd9", "@opam/rresult@opam:0.7.0@0042fa02",
-        "@opam/oseq@opam:0.4@40579d86", "@opam/dune@opam:2.9.1@1e504822",
+        "@opam/psq@opam:0.2.0@e2fd474c", "@opam/oseq@opam:0.4@40579d86",
+        "@opam/dune@opam:2.9.1@1e504822",
         "@opam/containers@opam:3.6.1@c263d6cd"
       ],
       "devDependencies": [
         "@opam/utop@opam:2.9.0@10af4ff3",
         "@opam/ppx_inline_test@opam:v0.14.1@8b68b6f7",
-        "@opam/ocamlformat-rpc@opam:0.19.0@f32c0739",
-        "@opam/ocamlformat@opam:0.19.0@d7e55490",
+        "@opam/ocamlformat-rpc@opam:0.19.0@8c952483",
+        "@opam/ocamlformat@opam:0.19.0@1e837bb3",
         "@opam/ocaml-lsp-server@opam:1.9.0@671f2077"
       ]
     },
@@ -539,6 +540,32 @@
           "name": "re",
           "version": "1.10.3",
           "path": "esy.lock/opam/re.1.10.3"
+        }
+      },
+      "overrides": [],
+      "dependencies": [
+        "ocaml@4.12.0@d41d8cd9", "@opam/seq@opam:base@d8d7de1d",
+        "@opam/dune@opam:2.9.1@1e504822", "@esy-ocaml/substs@0.0.1@d41d8cd9"
+      ],
+      "devDependencies": [
+        "ocaml@4.12.0@d41d8cd9", "@opam/seq@opam:base@d8d7de1d",
+        "@opam/dune@opam:2.9.1@1e504822"
+      ]
+    },
+    "@opam/psq@opam:0.2.0@e2fd474c": {
+      "id": "@opam/psq@opam:0.2.0@e2fd474c",
+      "name": "@opam/psq",
+      "version": "opam:0.2.0",
+      "source": {
+        "type": "install",
+        "source": [
+          "archive:https://opam.ocaml.org/cache/md5/b9/b94fb15f8878172bf58446b7d0fb7c1e#md5:b94fb15f8878172bf58446b7d0fb7c1e",
+          "archive:https://github.com/pqwy/psq/releases/download/v0.2.0/psq-v0.2.0.tbz#md5:b94fb15f8878172bf58446b7d0fb7c1e"
+        ],
+        "opam": {
+          "name": "psq",
+          "version": "0.2.0",
+          "path": "esy.lock/opam/psq.0.2.0"
         }
       },
       "overrides": [],
@@ -1152,8 +1179,8 @@
         "@opam/dune@opam:2.9.1@1e504822", "@opam/csexp@opam:1.5.1@8a8fb3a7"
       ]
     },
-    "@opam/ocamlformat-rpc@opam:0.19.0@f32c0739": {
-      "id": "@opam/ocamlformat-rpc@opam:0.19.0@f32c0739",
+    "@opam/ocamlformat-rpc@opam:0.19.0@8c952483": {
+      "id": "@opam/ocamlformat-rpc@opam:0.19.0@8c952483",
       "name": "@opam/ocamlformat-rpc",
       "version": "opam:0.19.0",
       "source": {
@@ -1207,8 +1234,8 @@
         "@opam/base@opam:v0.14.2@04880a76"
       ]
     },
-    "@opam/ocamlformat@opam:0.19.0@d7e55490": {
-      "id": "@opam/ocamlformat@opam:0.19.0@d7e55490",
+    "@opam/ocamlformat@opam:0.19.0@1e837bb3": {
+      "id": "@opam/ocamlformat@opam:0.19.0@1e837bb3",
       "name": "@opam/ocamlformat",
       "version": "opam:0.19.0",
       "source": {
