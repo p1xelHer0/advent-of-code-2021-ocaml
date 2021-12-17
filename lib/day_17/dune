@@ -1,0 +1,8 @@
+(library
+ (name day_17)
+ (libraries aoc_2021 containers rresult oseq)
+ (inline_tests)
+ (preprocess
+  (pps ppx_inline_test))
+ (flags
+  (:standard -open Aoc_2021)))
