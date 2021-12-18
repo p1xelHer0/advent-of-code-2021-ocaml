@@ -125,32 +125,8 @@ end
 module B = struct
   let generate_real_cave matrix =
     let cave_multiplier = 5 in
-    let w = Array.length matrix.(0) in
     let h = Array.length matrix in
-
-    let incr (x, y) n =
-      let rec incr_aux n ~times =
-        if times = 0
-        then n
-        else
-          let n' = succ n in
-          let n'' = if n' > 9 then 1 else n' in
-          incr_aux n'' ~times:(pred times)
-      in
-      let value_to_times n =
-        if n >= (h * cave_multiplier) - (1 * h)
-        then 4
-        else if n >= (h * cave_multiplier) - (2 * h)
-        then 3
-        else if n >= (h * cave_multiplier) - (3 * h)
-        then 2
-        else if n >= (h * cave_multiplier) - (4 * h)
-        then 1
-        else 0
-      in
-      let times = value_to_times x + value_to_times y in
-      incr_aux n ~times
-    in
+    let w = Array.length matrix.(0) in
 
     let new_matrix =
       Array.make_matrix ~dimx:(h * cave_multiplier) ~dimy:(w * cave_multiplier)
@@ -159,17 +135,12 @@ module B = struct
 
     for t1 = 0 to pred @@ cave_multiplier do
       for t2 = 0 to pred @@ cave_multiplier do
-        for y = 0 to pred @@ Array.length matrix do
-          for x = 0 to pred @@ Array.length matrix.(0) do
-            new_matrix.(y + (t1 * h)).(x + (t2 * h)) <- matrix.(y).(x)
+        for y = 0 to pred @@ h do
+          for x = 0 to pred @@ w do
+            new_matrix.(y + (t1 * h)).(x + (t2 * w)) <-
+              ((matrix.(y).(x) + t1 + t2 - 1) mod 9) + 1
           done
         done
-      done
-    done;
-
-    for y = 0 to pred @@ Array.length new_matrix do
-      for x = 0 to pred @@ Array.length new_matrix.(0) do
-        new_matrix.(y).(x) <- incr (x, y) new_matrix.(y).(x)
       done
     done;
 
