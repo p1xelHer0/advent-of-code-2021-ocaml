@@ -3,7 +3,7 @@ module A = struct
     match l with
     | [] | [ _ ] -> accu
     | x1 :: x2 :: tl ->
-        let accu' = if x2 > x1 then accu + 1 else accu in
+        let accu' = if x2 > x1 then succ accu else accu in
         solve_aux accu' (x2 :: tl)
 
   let solve = solve_aux 0
@@ -20,7 +20,7 @@ module B = struct
         let sliding_window_1 = sum [ x1; x2; x3 ] in
         let sliding_window_2 = sum [ x2; x3; x4 ] in
         let accu' =
-          if sliding_window_2 > sliding_window_1 then accu + 1 else accu
+          if sliding_window_2 > sliding_window_1 then succ accu else accu
         in
         solve_aux accu' (x2 :: x3 :: x4 :: tl)
     | _ -> accu
