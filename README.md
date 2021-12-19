@@ -1,6 +1,6 @@
 # ✨ Advent of Code 2021 ✨
 
-> 1AB 2AB 3AB 4-- 5AB 6AB 7AB 8A- 9A- 10AB 11AB 12-- 13AB 14-- 15AB 16-- 17AB solved
+> 1AB 2AB 3AB 4-- 5AB 6AB 7AB 8A- 9A- 10AB 11AB 12-- 13AB 14-- 15AB 16-- 17AB 18-- 19-- 20-- 21-- 22-- 23-- 24-- 25-- solved
 
 ## My solutions to [Advent of Code 2021](https://adventofcode.com/2021/) written in [OCaml](https://ocaml.org/)
 
