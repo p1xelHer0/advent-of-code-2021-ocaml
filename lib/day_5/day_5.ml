@@ -1,3 +1,5 @@
+open ContainersLabels
+
 module Coordinate = struct
   type t = {
     x : int;

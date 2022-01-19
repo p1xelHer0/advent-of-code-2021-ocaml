@@ -41,7 +41,7 @@ let matrix_h coordinates =
   |> fun (_, y) -> y |> succ
 
 let matrix_from_coordinates matrix =
-  Array.make_matrix ~dimx:(matrix_h matrix) ~dimy:(matrix_w matrix) '.'
+  Array.make_matrix ~dimx:(matrix_h matrix) ~dimy:(matrix_w matrix) ' '
 
 let rec fold_x coordinates ~x ~init:accu =
   let c =
@@ -138,7 +138,7 @@ module B = struct
 
     let new_paper = matrix_from_coordinates new_dots in
 
-    List.iter ~f:(fun (x, y) -> new_paper.(y).(x) <- '#') new_dots;
+    List.iter ~f:(fun (x, y) -> new_paper.(y).(x) <- '@') new_dots;
     print_endline "Day 13B:";
     print_matrix new_paper
 end

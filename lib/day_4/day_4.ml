@@ -1,7 +1,74 @@
 open ContainersLabels
 
+let parse l =
+  let numbers =
+    l |> List.hd |> String.split_on_char ~by:',' |> List.map ~f:int_of_string
+  in
+  let parse_board l =
+    l
+    |> List.tl
+    |> List.map ~f:(fun line ->
+           String.split_on_char ~by:' ' line
+           |> List.filter ~f:(fun s -> s |> String.is_empty |> not)
+           |> List.map ~f:(fun s -> (int_of_string s, false))
+           |> Array.of_list
+       )
+    |> Array.of_list
+  in
+  let boards =
+    List.sublists_of_len ~len:6 (List.tl l) |> List.map ~f:parse_board
+  in
+  (numbers, boards)
+
+let print_board board =
+  Array.iter
+    ~f:(fun a ->
+      Array.iter ~f:(fun (n, b) -> Printf.printf "(%i,%b)" n b) a;
+      print_newline ()
+    )
+    board;
+  print_newline ()
+
+let mark n ~board =
+  let h = pred @@ Array.length board in
+  let w = pred @@ Array.length board.(0) in
+  for y = 0 to h do
+    for x = 0 to w do
+      let x', _ = board.(y).(x) in
+      if x' = n then board.(y).(x) <- (x', true)
+    done
+  done
+
+let check_win (board : (int * bool) array array) =
+  let h = Array.length board in
+  let w = Array.length board.(0) in
+  let check_row y =
+    Array.fold_left ~f:(fun accu (_, v) -> accu && v) ~init:true board.(y)
+  in
+  let check_column x =
+    Array.fold_left ~f:(fun accu a -> accu && (snd @@ a.(x))) ~init:true board
+  in
+  let win_of_row =
+    OSeq.(0 --^ h) |> OSeq.filter (fun y -> check_row y) |> OSeq.to_list
+  in
+  let win_of_column =
+    OSeq.(0 --^ w) |> OSeq.filter (fun x -> check_column x) |> OSeq.to_list
+  in
+  List.append win_of_column win_of_row |> List.length > 0
+
+let score board =
+  Array.to_seq board
+  |> Seq.map Array.to_seq
+  |> OSeq.flatten
+  |> OSeq.filter_map (fun (x, marked) -> if not marked then Some x else None)
+  |> OSeq.sum
+
 module A = struct
-  let solve _l = 0
+  let solve l =
+    let _numbers, boards = parse l in
+
+    List.iter ~f:print_board boards;
+    0
 
   let%test _ =
     solve
@@ -26,7 +93,7 @@ module A = struct
         "22 11 13  6  5";
         " 2  0 12  3  7";
       ]
-    = 0
+    = 4512
 end
 
 module B = struct

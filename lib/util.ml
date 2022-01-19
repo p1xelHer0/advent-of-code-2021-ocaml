@@ -1,14 +1,6 @@
-let read_file filename =
-  let chan = open_in filename in
-  let try_read () = try Some (input_line chan) with End_of_file -> None in
-  let rec loop lines =
-    match try_read () with
-    | Some s -> loop (s :: lines)
-    | None ->
-        close_in chan;
-        List.rev lines
-  in
-  loop []
+open ContainersLabels
+
+let read_file name = CCIO.(with_in name read_lines_l)
 
 let parse fmt map line = try Some (Scanf.sscanf line fmt map) with _ -> None
 
@@ -22,7 +14,7 @@ let rec try_parse parsers line =
     )
 
 let remove_duplicates l =
-  let cons_uniq tl hd = if List.mem hd ~set:tl then tl else hd :: tl in
+  let cons_uniq tl hd = if Stdlib.List.mem hd tl then tl else hd :: tl in
   List.rev (List.fold_left ~f:cons_uniq ~init:[] l)
 
 let range a b =

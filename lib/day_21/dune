@@ -1,6 +1,6 @@
 (library
  (name day_21)
- (libraries aoc_2021 containers rresult oseq)
+ (libraries aoc_2021 containers oseq psq)
  (inline_tests)
  (preprocess
   (pps ppx_inline_test))

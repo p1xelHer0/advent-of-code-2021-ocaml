@@ -1,5 +1,25 @@
 open ContainersLabels
 
+let parse l =
+  let numbers =
+    l |> List.hd |> String.split_on_char ~by:',' |> List.map ~f:int_of_string
+  in
+  let parse_board l =
+    l
+    |> List.tl
+    |> List.map ~f:(fun line ->
+           String.split_on_char ~by:' ' line
+           |> List.filter ~f:(fun s -> s |> String.is_empty |> not)
+           |> List.map ~f:(fun s -> (int_of_string s, false))
+           |> Array.of_list
+       )
+    |> Array.of_list
+  in
+  let boards =
+    List.sublists_of_len ~len:6 (List.tl l) |> List.map ~f:parse_board
+  in
+  (numbers, boards)
+
 module A = struct
   let solve _l = 1
 

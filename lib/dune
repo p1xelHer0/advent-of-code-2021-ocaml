@@ -1,2 +1,3 @@
 (library
- (public_name aoc_2021))
+ (public_name aoc_2021)
+ (libraries containers))

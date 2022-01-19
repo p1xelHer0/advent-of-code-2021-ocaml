@@ -1,3 +1,5 @@
+open ContainersLabels
+
 type direction =
   | Forward
   | Down

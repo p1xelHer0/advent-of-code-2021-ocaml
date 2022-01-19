@@ -1,3 +1,5 @@
+open ContainersLabels
+
 module A = struct
   let rec solve_aux accu l =
     match l with

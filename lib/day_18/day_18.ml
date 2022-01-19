@@ -1,5 +1,5 @@
 open ContainersLabels
-open Angstrom
+(* open Angstrom *)
 
 include struct
   let a = 0
